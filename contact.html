@@ -1,0 +1,180 @@
+---
+layout: default
+title: Get In Touch
+---  
+<div class="content">
+{% include page-header.html %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-md-9">
+                <form action="/php/mail.php" method="post" id="contact-form">
+                    <div class="form-group">
+                        <label for="contactname" class="input-desc">Birthing parent's name and preferred pronouns *</label>
+                        <input type="text" class="form-control input-border-bottom" id="contactname" name="contactname" placeholder="First Last; they/them/theirs" required>
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="email" class="input-desc">Email Address *</label>
+                        <input type="email" class="form-control input-border-bottom" id="email" name="email" placeholder="expectingparent@gmail.com" required>
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="phonenumber" class="input-desc">Phone Number *</label>
+                        <input type="text" class="form-control input-border-bottom" id="phonenumber" name="phonenumber" placeholder="206-555-1234" required>
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="duedate" class="input-desc">Due Date</label>
+                        <input type="text" class="form-control input-border-bottom" id="duedate" name="duedate" placeholder="xx/xx/xxxx">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="questionsconcerns" class="input-desc">Your specific questions or concerns *</label>
+                        <textarea class="form-control input-border-bottom" rows="4" id="questionsconcerns" name="questionsconcerns" placeholder="Your Message" required></textarea>
+                    </div><!-- End .from-group -->
+    <!-- Start of additional information -->
+                    <div class="form-group">
+                        <label class="input-desc">If you are inquiring about a reservation we require the following information in order to process your request:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="input-desc">Address</label>
+                        <textarea class="form-control input-border-bottom" rows="3" id="address" name="address"></textarea> 
+                    </div><!-- End .from-group -->                            
+                    <div class="form-group">
+                        <label for="city" class="input-desc">City</label>
+                        <input type="text" class="form-control input-border-bottom" id="city" name="city">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="zip" class="input-desc">Zip *</label>
+                        <input type="text" class="form-control input-border-bottom" id="zip" name="zip">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="partner" class="input-desc">Spouse, partner, or labor support person and their preferred pronouns</label>
+                        <input type="text" class="form-control input-border-bottom" id="partner" name="partner" placeholder="First Last; they/them/theirs">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="additionalphone" class="input-desc">Any additional phone numbers you may use during or following your birth?</label>
+                        <input type="text" class="form-control input-border-bottom" id="additionalphone" name="additionalphone" placeholder="425-555-1234, 253-555-1234">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="additionalphone" class="input-desc">Are you planning a home or hospital birth?</label>
+                        <select name="homehospital" id="homehostpial" class="form-control">
+                            <option value="home">Home</option>
+                            <option value="hospital">Hospital</option>
+                        </select>
+                        <label for="hospitalname" class="input-desc">If hospital, which hospital?</label>
+                        <input type="text" class="form-control input-border-bottom" id="hospitalname" name="hospitalname" placeholder="name of hospital">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="provider" class="input-desc">Which midwife, doctor, or group are you working with?</label>
+                        <input type="text" class="form-control input-border-bottom" id="provider" name="provider" placeholder="midwife or doctor name">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="firstbirth" class="input-desc">Is this a first birth for you?</label>
+                        <br />
+                        <input type="radio" name="firstbirthgroup" id="yes" value="Yes" >&nbsp;Yes <br>
+                        <input type="radio" name="firstbirthgroup" id="no" value="No" >&nbsp;No
+                        <br>
+                        <label for="aboutotherbirth" class="input-desc">If not, tell us a bit about your previous labor experience and how things progressed.</label>
+                        <input type="text" class="form-control input-border-bottom" id="aboutotherbirth" name="aboutotherbirth" placeholder="About my other birth(s)...">
+                    </div><!-- End .from-group -->
+                    <div class="form-group">
+                        <label for="howdidyouhear" class="input-desc">How did you hear about our tubs?</label>
+                        <textarea class="form-control input-border-bottom" rows="4" id="howdidyouhear" name="howdidyouhear" placeholder="i.e. Midwife? Friends? Hospital tour? Online?"></textarea>
+                        
+                    </div><!-- End .from-group -->
+
+                    <div class="mb10"></div><!-- space -->
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark btn-border min-width no-radius" data-loading-text="Sending..." value="Send Message">
+                    </div><!-- End .from-group -->
+                </form>
+
+
+<script data-cfasync="false" type="text/javascript">
+jQuery( document ).ready(function( $ ) {
+	// variable to hold request
+	var request;
+	// bind to the submit event of our form
+	$("#contact-form").submit(function(event){
+		// abort any pending request
+		if (request) {
+			request.abort();
+		}
+		// setup some local variables
+		var $form = $(this);
+		// let's select and cache all the fields
+		var $inputs = $form.find("input, select, button, textarea");
+		// serialize the data in the form
+		var serializedData = $form.serialize();
+		// let's disable the inputs for the duration of the ajax request
+		// Note: we disable elements AFTER the form data has been serialized.
+		// Disabled form elements will not be serialized.
+		$inputs.prop("disabled", true);
+		// fire off the request to /form.php
+        request = $.ajax({
+        url: "https://script.google.com/macros/s/AKfycbyrc0r3k_52wSGSoxsYnmVjdBpHZ30iQSr9Zpyk82dLPxAIaBf0/exec",
+        type: "post",
+        data: serializedData
+        });
+		// callback handler that will be called on success
+		request.done(function (response, textStatus, jqXHR){
+			// log a message to the console
+            console.log(response, textStatus, jqXHR);
+		    console.log("Hooray, it worked!");
+		});
+		// callback handler that will be called on failure
+		request.fail(function (jqXHR, textStatus, errorThrown){
+			// log the error to the console
+			console.error(
+				"The following error occured: "+
+				textStatus, errorThrown
+			);
+		});
+		// callback handler that will be called regardless
+		// if the request failed or succeeded
+		request.always(function () {
+			// reenable the inputs
+			$inputs.prop("disabled", false);
+		});
+		// prevent default posting of form
+		event.preventDefault();
+	});
+});
+</script>
+
+
+            </div><!-- End .col-sm-8 -->
+
+            <div class="mb40 visible-xs"></div><!-- space -->
+
+            <div class="col-sm-4 col-md-3">
+
+                <h3 class="mb20">Contact Information</h3>
+                <ul class="contact-list">
+                    <li><strong>Phone:</strong> 206 - 713 - 0349 </li>
+                    <li><strong>Email:</strong> <a href="mailto:info@labortubs.com">info@labortubs.com</a></li>
+                    <li><strong>Mail:</strong> 10115 Greenwood Ave North <br /> PMB #129<br /> Seattle, WA 98133</li>
+                </ul>
+                
+
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/LaborTubsNW/" class="social-icon icon-facebook add-tooltip first" data-placement="top" title="Like us on Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <!--<a href="#" class="social-icon icon-twitter add-tooltip" data-placement="top" title="Find us at Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon icon-google-plus add-tooltip" data-placement="top" title="Find us at Google+">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a href="#" class="social-icon icon-skype add-tooltip" data-placement="top" title="Contact us via Skype">
+                        <i class="fa fa-skype"></i>
+                    </a>
+                    <a href="#" class="social-icon icon-linkedin add-tooltip" data-placement="top" title="Find us at Linkedin">
+                        <i class="fa fa-linkedin"></i>
+                    </a>-->
+                </div><!-- End .social-icons -->
+                
+            </div><!-- End .col-sm-4 -->
+        </div><!-- End .row --> 
+    </div><!-- End .container -->
+</div><!-- End #content -->

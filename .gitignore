@@ -1,0 +1,11 @@
+#macOS stuffs
+.DS_Store
+.AppleDouble
+.LSOverride
+
+.vscode/
+pre-assets/
+assets/small/
+
+.sass-cache
+.jekyll-metadata

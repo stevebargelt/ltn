@@ -1,0 +1,53 @@
+<header id="header" role="banner">
+{% if page.url == "/" %} 
+	<nav class="navbar navbar-white navbar-transparent animated-dropdown ttb-dropdown" role="navigation">
+{% else %} 
+	<nav class="navbar navbar-white animated-dropdown ttb-dropdown" role="navigation">
+{% endif %}
+
+		<div class="navbar-top clearfix">
+			<div class="container">
+				&nbsp; <!-- This is the vertical space above the logo and navigation -->
+			</div><!-- End .container -->
+		</div><!-- End .navbar-top -->                
+		<div class="navbar-inner sticky-menu">
+			<div class="container">
+				<div class="navbar-header">
+					<!-- Mobile Menu Button -->
+					<button type="button" class="navbar-toggle btn-circle pull-right collapsed" data-toggle="collapse" data-target="#main-navbar-container">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+					</button>
+					{% if page.url == "/" %} 
+							<a class="navbar-brand" href="/" title="Labor Tubs Northwest"><img src="/images/ltn-logo-white-80x50.png"></a>
+					{% else %} 
+							<a class="navbar-brand" href="/" title="Labor Tubs Northwest"><img src="/images/ltn-logo-80x50.png"></a>
+					{% endif %}
+				</div><!-- End .navbar-header -->
+
+				<div class="collapse navbar-collapse" id="main-navbar-container">
+					<ul class="nav navbar-nav">
+						<li {% if page.url == "/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/" role="button" aria-expanded="false">Home</a>
+						</li>
+						<li {% if page.url contains "/services/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/services/" role="button" aria-expanded="false">Services</a>
+						</li>
+						<li {% if page.url contains "/reservations/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/reservations/" role="button" aria-expanded="false">Reservations</a>
+						</li>
+						<li {% if page.url contains "/testimonials/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/testimonials/" role="button" aria-expanded="false">Testimonials</a>
+						</li>
+						<li {% if page.url contains "/faqs/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/faqs/" role="button" aria-expanded="false">FAQ</a>
+						</li>
+						<li {% if page.url contains "/contact/" %}class="active megamenu-container"{% else %}class="megamenu-container"{% endif %}>
+							<a href="/contact/" role="button" aria-expanded="false">Contact Us</a>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container -->
+		</div><!-- End .navbar-inner -->
+	</nav>
+</header><!-- End #header -->
